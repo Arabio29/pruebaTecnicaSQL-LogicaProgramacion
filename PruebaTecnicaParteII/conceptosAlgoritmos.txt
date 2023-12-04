@@ -1,12 +1,167 @@
 2)Conceptos de algoritmos y lenguaje
 
-    a. Elabore un algoritmo de un factorial de 1 a 10 (diagrama de flujo y
+a. Elabore un algoritmo de un factorial de 1 a 10 (diagrama de flujo y
     prueba de escritorio)
-    
+
+        //Algoritmo hecho en C#
+
+        using System;
+
+        class Program //creamos clase llamada program
+        {
+            static void Main()
+            {   
+                // Método principal donde comienza la ejecución del programa
+                // Calcula y muestra el factorial de los números del 1 al 10
+
+                // Bucle for que itera desde 1 hasta 10 (inclusive)
+                for (int i = 1; i <= 10; i++)
+                {
+                    // Imprime en la consola el mensaje con el resultado del factorial
+                    Console.WriteLine($"Factorial de {i}: {Factorial(i)}");
+                }
+            }
+
+            // Función Factorial que calcula el factorial de un número
+            static int Factorial(int num)
+            {
+
+                // Verifica si el número es 0 o 1, ya que el factorial de 0 y 1 es siempre 1
+                if (num == 0 || num == 1)
+                {
+                    // Si es 0 o 1, devuelve 1 ya que su factorial es 1
+                    return 1;
+                }
+                else
+                {
+                    // Si el número es mayor que 1, calcula su factorial
+                    int result = 1; // Inicializa el resultado del factorial en 1
+
+                    // Bucle for que itera desde 1 hasta el número actual
+                    for (int j = 1; j <= num; j++)
+                    {
+                        result *= j; // Multiplica el resultado por cada número desde 1 hasta num
+                    }
+                    return result; // Devuelve el resultado del factorial
+                }
+            }
+        }
 
 
-    b. Elabore un algoritmo de orden burbuja (diagrama de flujo y prueba
+
+b. Elabore un algoritmo de orden burbuja (diagrama de flujo y prueba
     de escritorio)
-    
+    //Algoritmo hecho con Pseudocodigo
 
-    c. Elabore en pascal el orden de burbuja mediante recursividad.
+        //By Eliasib Cantor
+        Algoritmo ordenamientoBurbuja
+            //Declaramos variables
+            Definir i, j, temp, vector Como Entero
+            
+            //creamos array con limite de 10 campos
+            Dimension vector[10]
+            
+            //bucle for llena los campos del array 
+            //con numeros aleatorios del 1 al 20
+            para i = 1 Hasta 10 Hacer
+                vector[i] = azar(20)
+            FinPara
+            
+            //2 bucles aninados que llevan la logica del 
+            //ordenamiento burbuja
+            para i = 1 hasta 9 Hacer	//hasta 9 porque la logica va hasta 9+1 = 10
+                para j = 1 hasta 9 hacer 				//Ejemplo
+                    si vector[j] > vector[j+1] Entonces //[4] > [3]
+                        temp = vector[j] 				//temp = 4
+                        vector[j] = vector[j+1] 		//4 = 3
+                        vector[j+1] = temp				//3 = temp(4)
+                    FinSi
+                FinPara
+            FinPara
+            
+            //bucle for imprime los valores de los campos  
+            //del array
+            para i = 1 hasta 10 hacer
+                Escribir vector[i]
+            FinPara	
+        FinAlgoritmo
+
+
+
+c. Elabore en pascal el orden de burbuja mediante recursividad. 
+
+        //Algoritmo hecho en pascal
+            program OrdenamientoBurbujaRecursivo;
+
+        const
+        MAX = 10;
+
+        type
+        TArray = array[1..MAX] of integer;
+
+        var
+        A: TArray;
+
+        procedure Intercambiar(var a, b: integer);
+        var
+        temp: integer;
+        begin
+        temp := a;
+        a := b;
+        b := temp;
+        end;
+
+        procedure OrdenarBurbujaRecursivo(var arr: TArray; n: integer);
+        var
+        i: integer;
+        begin
+        if n = 1 then
+            Exit
+        else
+        begin
+            for i := 1 to n - 1 do
+            begin
+            if arr[i] > arr[i + 1] then
+                Intercambiar(arr[i], arr[i + 1]);
+            end;
+            OrdenarBurbujaRecursivo(arr, n - 1);
+        end;
+        end;
+
+        procedure MostrarArray(arr: TArray; n: integer);
+        var
+        i: integer;
+        begin
+        writeln('El arreglo ordenado es:');
+        for i := 1 to n do
+            write(arr[i], ' ');
+        writeln;
+        end;
+
+        procedure LlenarArray(var arr: TArray; n: integer);
+        var
+        i: integer;
+        begin
+        writeln('Ingrese los elementos del arreglo:');
+        for i := 1 to n do
+            readln(arr[i]);
+        end;
+
+        var
+        numElementos: integer;
+
+        begin
+        writeln('Ingrese la cantidad de elementos del arreglo (máximo ', MAX, '):');
+        readln(numElementos);
+
+        if (numElementos < 1) or (numElementos > MAX) then
+        begin
+            writeln('Cantidad de elementos no válida.');
+            Exit;
+        end;
+
+        LlenarArray(A, numElementos);
+        OrdenarBurbujaRecursivo(A, numElementos);
+        MostrarArray(A, numElementos);
+        end.
+
