@@ -1,0 +1,12 @@
+2)Conceptos de algoritmos y lenguaje
+
+    a. Elabore un algoritmo de un factorial de 1 a 10 (diagrama de flujo y
+    prueba de escritorio)
+    
+
+
+    b. Elabore un algoritmo de orden burbuja (diagrama de flujo y prueba
+    de escritorio)
+    
+
+    c. Elabore en pascal el orden de burbuja mediante recursividad.

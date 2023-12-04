@@ -1,0 +1,114 @@
+
+******************
+-- EL ARCHIVO PARA VER EL DIAGRAMA DE FLUJO LO PUEDEN VER EN LA SIGUIENTE RUTA: pruebaTecnicaEliasibCantor/pruebaTecnicaParteI/factura.mwb
+******************
+
+
+
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema FACTURACION_VENTA_FRUTAS_PRODUCTOS
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema FACTURACION_VENTA_FRUTAS_PRODUCTOS
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS FACTURACION_VENTA_FRUTAS_PRODUCTOS DEFAULT CHARACTER SET utf8 ;
+USE FACTURACION_VENTA_FRUTAS_PRODUCTOS ;
+
+-- -----------------------------------------------------
+-- Table FACTURACION_VENTA_FRUTAS_PRODUCTOS.Cliente
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS FACTURACION_VENTA_FRUTAS_PRODUCTOS.Cliente (
+  ID_Cliente INT NOT NULL,
+  Nombre VARCHAR(45) NULL,
+  Apellido VARCHAR(45) NULL,
+  Email VARCHAR(100) NULL,
+  Telefono VARCHAR(10) NULL,
+  PRIMARY KEY (ID_Cliente))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table FACTURACION_VENTA_FRUTAS_PRODUCTOS.Categoria
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS FACTURACION_VENTA_FRUTAS_PRODUCTOS.Categoria (
+  ID_Categoria INT NOT NULL,
+  Nombre_Categoria VARCHAR(45) NOT NULL,
+  Descripcion VARCHAR(45) NOT NULL,
+  Categoriacol VARCHAR(45) NOT NULL,
+  PRIMARY KEY (ID_Categoria))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table FACTURACION_VENTA_FRUTAS_PRODUCTOS.Productos
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS FACTURACION_VENTA_FRUTAS_PRODUCTOS.Productos (
+  ID_Productos INT NOT NULL,
+  Nombre_Producto VARCHAR(45) NOT NULL,
+  Precio_Unitario DECIMAL NOT NULL,
+  Stock_Disponible INT NOT NULL,
+  ID_Categoria INT NOT NULL,
+  PRIMARY KEY (ID_Productos),
+  INDEX ID_Categoria_idx (ID_Categoria ASC) VISIBLE,
+  CONSTRAINT ID_Categoria
+    FOREIGN KEY (ID_Categoria)
+    REFERENCES FACTURACION_VENTA_FRUTAS_PRODUCTOS.Categoria (ID_Categoria)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table FACTURACION_VENTA_FRUTAS_PRODUCTOS.Facturas
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS FACTURACION_VENTA_FRUTAS_PRODUCTOS.Facturas (
+  ID_Factura INT NOT NULL,
+  Fecha_Factura DATE NOT NULL,
+  Total DECIMAL NOT NULL,
+  ID_Cliente INT NOT NULL,
+  Metodo_Pago VARCHAR(45) NOT NULL,
+  PRIMARY KEY (ID_Factura),
+  INDEX ID_Cliente_idx (ID_Cliente ASC) VISIBLE,
+  CONSTRAINT ID_Cliente
+    FOREIGN KEY (ID_Cliente)
+    REFERENCES FACTURACION_VENTA_FRUTAS_PRODUCTOS.Cliente (ID_Cliente)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table FACTURACION_VENTA_FRUTAS_PRODUCTOS.Detalle_Factura
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS FACTURACION_VENTA_FRUTAS_PRODUCTOS.Detalle_Factura (
+  ID_Detalle INT NOT NULL,
+  ID_Factura INT NOT NULL,
+  ID_Producto INT NOT NULL,
+  Cantidad_Vendida INT NOT NULL,
+  Precio_Vendido DECIMAL NOT NULL,
+  PRIMARY KEY (ID_Detalle),
+  INDEX ID_Factura_idx (ID_Factura ASC) VISIBLE,
+  INDEX ID_Producto_idx (ID_Producto ASC) VISIBLE,
+  CONSTRAINT ID_Factura
+    FOREIGN KEY (ID_Factura)
+    REFERENCES FACTURACION_VENTA_FRUTAS_PRODUCTOS.Facturas (ID_Factura)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT ID_Producto
+    FOREIGN KEY (ID_Producto)
+    REFERENCES FACTURACION_VENTA_FRUTAS_PRODUCTOS.Productos (ID_Productos)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

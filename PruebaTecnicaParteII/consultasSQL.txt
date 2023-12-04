@@ -1,0 +1,80 @@
+--Realizado por Eliasib Cantor
+
+
+Realice las siguientes consultas utilizando el SQL. 
+    
+    --INICIO CONSULTAS
+
+    1. Seleccione Una Consulta De Los Productos Que Valen Más De $1000
+
+       -- Selecciona los productos con un valor mayor a $1000
+        SELECT PRODUCTO, NOMBRE_PRODUCTO, VALOR
+        FROM productos
+        WHERE VALOR > 1000;
+
+    2. Seleccione Una Consulta De Los Clientes Que Compraron Y Porque Valor
+    Lo Hicieron. (CLIENTE, NOMBRE_CLIENTE, TOTAL)
+
+        -- Selecciona clientes que han realizado compras y muestra el total gastado por cada cliente
+        SELECT C.cliente AS CLIENTE, C.nombre_cliente AS NOMBRE_CLIENTE, SUM(CF.total) AS TOTAL
+        FROM Clientes C
+        JOIN CabezaFactura CF ON C.cliente = CF.cliente
+        GROUP BY C.cliente, C.nombre_cliente;
+
+    
+    3. Seleccione Una Consulta De Las Compras Realizadas Entre Enero De 2005 Y Marzo De 2005. (NUMERO, NOMBRE CLIENTE,FECHA,NOMBRE_PRODUCTO,CANTIDAD,VALOR) 
+        
+        -- Selecciona compras realizadas entre enero de 2005 y marzo de 2005
+        SELECT *
+        FROM CabezaFactura
+        WHERE fecha BETWEEN '2005-01-01' AND '2005-03-31';
+    
+    
+    4. Que Clientes No Compraron Productos (CLIENTE, NOMBRE_CLIENTE )
+
+        -- Selecciona clientes que no han realizado compras
+        SELECT c.cliente, c.nombre_cliente
+        FROM Clientes c
+        LEFT JOIN CabezaFactura cf ON c.cliente = cf.cliente
+        WHERE cf.cliente IS NULL;
+
+
+    5. Realice Un Ranking De Los Productos Que Más Compraron De La
+
+        -- Genera un ranking de productos según la cantidad total vendida
+        SELECT producto_id, nombre_producto, SUM(cantidad) AS total_vendido
+        FROM DetalleFactura
+        GROUP BY producto_id
+        ORDER BY total_vendido DESC;
+
+    --FIN CONSULTAS
+
+
+
+
+
+    --INICIO GLOSARIO
+
+        -SELECT: Palabra clave para seleccionar columnas específicas de una tabla.
+
+        -FROM: Indica la tabla de la cual se extraen los datos.
+
+        -WHERE: Condición que filtra los resultados para mostrar solo aquellos que cumplen con cierta condición.
+
+        -JOIN: Une dos tablas basándose en una condición específica.
+
+        -SUM(): Función de agregación que suma los valores.
+
+        -GROUP BY: Agrupa los resultados basándose en columnas específicas.
+
+        -BETWEEN: Operador que filtra los resultados dentro de un rango específico de valores.
+
+        -LEFT JOIN: Une dos tablas devolviendo todos los registros de la tabla izquierda (Clientes en este caso) y los registros coincidentes de la tabla derecha (CabezaFactura) basados en una condición.
+
+        -IS NULL: Comprueba si el valor es nulo.
+
+        -SUM(): Función de agregación que calcula la suma de los valores.
+
+        -ORDER BY: Ordena los resultados basándose en una columna específica (total_vendido en este caso) en orden descendente (DESC).
+
+    --FIN GLOSARIO

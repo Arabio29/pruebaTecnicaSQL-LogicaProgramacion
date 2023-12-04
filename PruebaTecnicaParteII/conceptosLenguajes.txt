@@ -1,0 +1,58 @@
+1) Conceptos de lenguajes de desarrollo
+
+    a. Definición de lenguajes de desarrollo estructurado
+
+        Los lenguajes de desarrollo estructurado son aquellos que se enfocan en la organización y estructura clara del código. Estos lenguajes hacen uso de técnicas como secuencias, selecciones (decisiones) y ciclos (repetición) para escribir programas de manera más ordenada y fácil de entender. Ejemplos de lenguajes estructurados son C, Pascal y Java.
+
+    
+    b. Definición de lenguajes orientados a objetos
+
+        Los lenguajes orientados a objetos se basan en el concepto de "objetos" que tienen propiedades y comportamientos. Estos lenguajes permiten modelar el mundo real de una manera más cercana, donde los objetos interactúan entre sí a través de métodos (funciones) y tienen atributos (datos). Ejemplos de lenguajes orientados a objetos 
+        incluyen Java, C++ y Python.
+
+
+    c. Definición de clases, objetos, métodos, eventos (con ejemplos)
+
+        Clases: Son como plantillas o moldes que describen cómo se crean los objetos. Por ejemplo, si la clase es "Coche", describe las características y comportamientos generales de un coche.
+
+        Objetos: Son instancias específicas de una clase. Si "Coche" es una clase, un objeto de esa clase podría ser un coche en particular con su propio color, marca y modelo.
+
+        Métodos: Son acciones o funciones que un objeto puede realizar. Por ejemplo, un método de un coche podría ser "arrancar", "detenerse" o "cambiarVelocidad".
+
+        Eventos: Son sucesos que ocurren y pueden desencadenar acciones en un programa. Por ejemplo, al presionar un botón en una interfaz gráfica se puede desencadenar un evento para realizar una acción.
+
+        Ejemplo:
+         
+        // Definición de una clase en Java
+        public class Coche {
+            // Atributos
+            String marca;
+            String modelo;
+    
+        // Método
+        public void arrancar() {
+            System.out.println("El coche ha arrancado.");
+            }
+        }
+
+
+    d. Diferencia con ejemplos de lenguajes(c, java, pascal)
+
+        C: Es un lenguaje estructurado. Se centra en procedimientos y funciones. No es orientado a objetos.
+
+        Java: Es un lenguaje orientado a objetos. Utiliza clases y objetos para modelar conceptos del mundo real.
+
+        Pascal: Es un lenguaje estructurado similar a C. Se enfoca en estructuras de control como secuencias, selecciones y ciclos.
+
+    
+    e. Nombre algunos ide que conozca. 
+
+    Algunos IDE (Entornos de Desarrollo Integrados) conocidos son:
+
+        Visual Studio Code
+        Visual Studio
+        Eclipse
+        IntelliJ IDEA
+        NetBeans
+        Android Studio
+        Sublime text
